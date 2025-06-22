@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>InstaClone — Registration</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            background-color: #0e0e0e;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-container {
+            background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtk4C5wdl8S1ogO3KDaC1DecN6byr3ENFPeA&s") no-repeat center/cover;
+            padding: 40px;
+            border-radius: 16px;
+            width: 340px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.6);
+            text-align: center;
+            backdrop-filter: blur(3px);
+        }
+
+        .form-container h2 {
+            margin-bottom: 25px;
+            font-size: 28px;
+            color: #fff;
+            text-shadow: 0 0 8px rgba(0,0,0,0.5);
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="email"],
+        .form-container input[type="tel"],
+        .form-container input[type="password"] {
+            width: 90%;
+            padding: 14px;
+            margin: 12px 0;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-container input:focus {
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn {
+            width: 95%;
+            padding: 14px;
+            margin-top: 14px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #48dbfb;
+            color: #fff;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #5edfff;
+            transform: scale(1.02);
+        }
+
+        .form-container p {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #fff;
+            text-shadow: 0 0 8px rgba(0,0,0,0.5);
+        }
+
+        a {
+            color: #ff4e50;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Sign Up</h2>
+    <form action="/register" method="post">
+        <input type="text" name="nickname" placeholder="Nickname" required title="Введите уникальный никнейм">
+
+        <input type="email" name="email" placeholder="Email" required
+               pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+               title="Введите корректный email-адрес">
+
+        <input type="tel" name="phone" placeholder="Phone (+996 700 123 456)"
+               pattern="^\+996\d{9}$"
+               required title="Формат: +996XXXXXXXXX">
+
+        <input type="password" name="password" placeholder="Password" minlength="8"
+               required title="Пароль должен быть минимум 8 символов">
+
+        <button type="submit" class="btn">Register</button>
+    </form>
+
+    <p>Already have an account? <a href="/auth">Login</a></p>
+</div>
+
+</body>
+</html>
