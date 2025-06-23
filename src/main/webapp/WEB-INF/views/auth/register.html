@@ -2,117 +2,93 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>InstaClone — Registration</title>
+    <title>Register | Lifestyle</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
-            display: flex;
-            height: 100vh;
-            background-color: #0e0e0e;
-            font-family: 'Arial', sans-serif;
+            background-color: #000;
             color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
             justify-content: center;
             align-items: center;
+            height: 100vh;
         }
-
-        .form-container {
-            background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtk4C5wdl8S1ogO3KDaC1DecN6byr3ENFPeA&s") no-repeat center/cover;
-            padding: 40px;
-            border-radius: 16px;
-            width: 340px;
-            box-shadow: 0 0 25px rgba(0,0,0,0.6);
+        .register-container {
+            background-color: #121212;
+            border: 1px solid #333;
+            padding: 40px 30px;
+            border-radius: 8px;
+            width: 360px;
             text-align: center;
-            backdrop-filter: blur(3px);
         }
-
-        .form-container h2 {
-            margin-bottom: 25px;
-            font-size: 28px;
-            color: #fff;
-            text-shadow: 0 0 8px rgba(0,0,0,0.5);
+        .register-container h1 {
+            font-family: 'Trebuchet MS', sans-serif;
+            font-size: 22px;
+            margin-bottom: 10px;
         }
-
-        .form-container input[type="text"],
-        .form-container input[type="email"],
-        .form-container input[type="tel"],
-        .form-container input[type="password"] {
-            width: 90%;
-            padding: 14px;
-            margin: 12px 0;
-            border: none;
-            border-radius: 10px;
+        .register-container p {
             font-size: 14px;
-            outline: none;
-            transition: 0.3s;
+            color: #ccc;
+            margin-bottom: 20px;
         }
-
-        .form-container input:focus {
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-        }
-
-        .btn {
-            width: 95%;
-            padding: 14px;
-            margin-top: 14px;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #48dbfb;
+        .register-container input[type="text"],
+        .register-container input[type="email"],
+        .register-container input[type="tel"],
+        .register-container input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            background: #1c1c1c;
+            border: 1px solid #333;
+            border-radius: 4px;
             color: #fff;
-            transition: background-color 0.3s ease, transform 0.3s ease;
         }
-
-        .btn:hover {
-            background-color: #5edfff;
-            transform: scale(1.02);
+        .register-container button {
+            width: 100%;
+            padding: 12px;
+            background: #0095f6;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
         }
-
-        .form-container p {
+        .register-container button:hover {
+            background: #007ace;
+        }
+        .register-container .login-link {
             margin-top: 20px;
             font-size: 14px;
-            color: #fff;
-            text-shadow: 0 0 8px rgba(0,0,0,0.5);
         }
-
-        a {
-            color: #ff4e50;
+        .register-container .login-link a {
+            color: #0095f6;
             text-decoration: none;
         }
-
-        a:hover {
+        .register-container .login-link a:hover {
             text-decoration: underline;
         }
-
     </style>
 </head>
 <body>
 
-<div class="form-container">
-    <h2>Sign Up</h2>
-    <form action="/register" method="post">
-        <input type="text" name="nickname" placeholder="Nickname" required title="Введите уникальный никнейм">
-
+<div class="register-container">
+    <h1>Lifestyle</h1>
+    <p>we are more than just a social media</p>
+    <form action="/auth/saveUser" method="post">
+        <input type="text" name="userName" placeholder="Username" required title="Enter a unique username">
         <input type="email" name="email" placeholder="Email" required
                pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
-               title="Введите корректный email-адрес">
-
+               title="Enter a valid email address">
         <input type="tel" name="phone" placeholder="Phone (+996 700 123 456)"
                pattern="^\+996\d{9}$"
-               required title="Формат: +996XXXXXXXXX">
-
+               required title="Format: +996XXXXXXXXX">
         <input type="password" name="password" placeholder="Password" minlength="8"
-               required title="Пароль должен быть минимум 8 символов">
-
-        <button type="submit" class="btn">Register</button>
+               required title="Password must be at least 8 characters">
+        <button type="submit">Register</button>
     </form>
-
-    <p>Already have an account? <a href="/auth">Login</a></p>
+    <div class="login-link">
+        Already have an account? <a href="/auth">Log in</a>
+    </div>
 </div>
 
 </body>

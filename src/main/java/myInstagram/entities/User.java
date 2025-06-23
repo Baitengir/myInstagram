@@ -22,7 +22,7 @@ public class User {
     @SequenceGenerator(name = "user_gen", sequenceName = "user_seq")
     Long id;
     @Column(unique = true, nullable = false)
-    String UserName;
+    String userName;
     String password;
     @Column(unique = true, nullable = false)
     String email;
@@ -40,4 +40,11 @@ public class User {
     Follower follower;
     @OneToMany(mappedBy = "user", cascade = {REMOVE, MERGE, REFRESH})
     List<Image> images;
+
+    public User(String userName, String password, String email, String phone) {
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+    }
 }

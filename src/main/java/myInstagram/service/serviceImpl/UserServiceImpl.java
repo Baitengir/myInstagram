@@ -1,29 +1,49 @@
 package myInstagram.service.serviceImpl;
 
+import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 import myInstagram.entities.User;
-import myInstagram.repositories.repositoriesImpl.UserRepoImpl;
+import myInstagram.repositories.UserRepo;
 import myInstagram.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
-@Service
-public class UserServiceImpl implements UserService {
-    @Autowired
-    private final UserRepoImpl userRepoImpl;
 
-    public UserServiceImpl(UserRepoImpl userRepoImpl) {
-        this.userRepoImpl = userRepoImpl;
-    }
+@Service
+@RequiredArgsConstructor
+public class UserServiceImpl implements UserService {
+    private final UserRepo userRepo;
+
+//    @PostConstruct
+//    public void init (){
+//        userRepo.save(new User("Baitengir", "baitengir67", "b@gmail.com", "+996708998877"));
+//    }
 
     @Override
     public void save(User user) {
-        userRepoImpl.save(user);
+        System.out.println("Пришел пользователь: " + user);
+        userRepo.save(user);
+
     }
 
     @Override
     public void updateUserById(Long id, User user) {
 
+    }
+
+    @Override
+    public User getUserByName(String username) {
+        return userRepo.getUserByName(username);
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        return userRepo.getUserByEmail(email);
+    }
+
+    @Override
+    public User getUserByPhone(String phone) {
+        return userRepo.getUserByPhone(phone);
     }
 
     @Override

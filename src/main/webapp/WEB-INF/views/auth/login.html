@@ -1,176 +1,146 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lifestyle — Welcome</title>
+    <title>Lifestyle Register</title>
     <style>
-        * {
-            box-sizing: border-box;
+        body {
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
-        body {
+        .container {
             display: flex;
-            height: 100vh;
-            background-color: #0e0e0e;
-            font-family: 'Arial', sans-serif;
-            color: #fff;
-            padding: 0 140px; /* Ещё сильнее отступы с краёв */
+            align-items: center;
+            max-width: 1000px;
         }
 
         .left-side {
-            flex: 1;
             display: flex;
-            justify-content: center;
             align-items: center;
-            position: relative;
-            overflow: visible;
+            justify-content: center;
+            gap: 20px;
         }
 
-        .photo-card {
-            position: absolute;
-            width: 220px;
-            height: 390px;
-            border-radius: 20px;
+        .left-side img {
+            width: 180px;
+            height: 350px;
             object-fit: cover;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.7); /* Тень для объема */
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.6)); /* Еще немного тени */
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
         }
 
-        .photo-card:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 30px rgba(255,255,255,0.6);
-            filter: drop-shadow(0 6px 10px rgba(255,255,255,0.4));
-            z-index: 10;
+        .left-side img.center {
+            transform: scale(1.05);
+            z-index: 2;
         }
-
-        /* Ещё ближе к центру */
-        .photo1 { transform: rotate(-8deg) translateX(-50px) scale(1); z-index: 1; }
-        .photo2 { transform: rotate(0deg) translateX(0) scale(1.05); z-index: 2; }
-        .photo3 { transform: rotate(8deg) translateX(50px) scale(1); z-index: 1; }
 
         .right-side {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin-left: 50px;
         }
 
         .form-container {
-            background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtk4C5wdl8S1ogO3KDaC1DecN6byr3ENFPeA&s") no-repeat center/cover;
-            padding: 40px;
-            border-radius: 16px;
-            width: 340px;
-            box-shadow: 0 0 25px rgba(0,0,0,0.6);
-            text-align: center;
-            backdrop-filter: blur(3px);
+            background-color: #121212;
+            padding: 35px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            width: 260px;
         }
 
         .form-container h2 {
-            margin-bottom: 25px;
-            font-size: 28px;
-            color: #fff;
-            text-shadow: 0 0 8px rgba(0,0,0,0.5);
-        }
-
-        .form-container input[type="text"],
-        .form-container input[type="password"] {
-            width: 90%;
-            padding: 14px;
-            margin: 12px 0;
-            border: none;
-            border-radius: 10px;
-            font-size: 14px;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        .form-container input[type="text"]:focus,
-        .form-container input[type="password"]:focus {
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-        }
-
-        .btn {
-            width: 95%;
-            padding: 14px;
-            margin-top: 14px;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #79a672;
-            color: #fff;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: #ff686b;
-            transform: scale(1.02);
-        }
-
-        .register-btn {
-            background-color: #ec8c70;
-            display: inline-block;
-            text-decoration: none;
             text-align: center;
-            width: 95%;
-            padding: 14px;
-            margin-top: 10px;
-            border-radius: 10px;
-            font-size: 16px;
-            color: #fff;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-bottom: 25px;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 24px;
         }
 
-        .register-btn:hover {
-            background-color: #5edfff;
-            transform: scale(1.02);
+        .form-container input {
+            width: 100%;
+            padding: 11px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #262626;
+            color: #fff;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 11px;
+            background-color: #0095f6;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .form-container button:hover {
+            background-color: #1877f2;
         }
 
         .form-container p {
-            margin-top: 20px;
+            text-align: center;
+            margin: 14px 0 5px;
             font-size: 14px;
-            color: #fff;
-            text-shadow: 0 0 8px rgba(0,0,0,0.5);
         }
 
-        .register-description {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #fff;
-            text-shadow: 0 0 8px rgba(0,0,0,0.5);
-            text-align: left;
-            width: 100%;
+        .form-container a {
+            color: #0095f6;
+            text-decoration: none;
         }
+
+        .form-container a:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 18px 0;
+            color: #777;
+            font-size: 14px;
+        }
+
     </style>
 </head>
 <body>
 
-<div class="left-side">
-    <img src="https://i.pinimg.com/474x/2e/08/67/2e0867bd359218dccf73c304fc4b09e2.jpg" class="photo-card photo1" alt="Photo 1">
-    <img src="https://g1.img-dpreview.com/3ACBE6D011274856888F900E563D7A85.jpg" class="photo-card photo2" alt="Photo 2">
-    <img src="https://images.unsplash.com/photo-1566895291281-ea63efd4bdbc?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fDklM0ExNnxlbnwwfHwwfHx8MA%3D%3D" class="photo-card photo3" alt="Photo 3">
-</div>
+<div class="container">
 
-<div class="right-side">
-    <div class="form-container">
-        <h2>Welcome</h2>
-        <form action="/login" method="post">
-            <input type="text" name="gmail" placeholder="Gmail" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" required
-                   title="Enter a valid Gmail address">
-            <input type="password" name="password" placeholder="Password" minlength="8" required
-                   title="Password must be at least 8 characters">
-            <button type="submit" class="btn">Login</button>
-        </form>
-
-        <p class="register-description">If you don't have an account:</p>
-        <a href="auth/register" class="register-btn">Register</a>
-
-        <p>© Lifestyle </p>
+    <div class="left-side">
+        <img src="https://i.pinimg.com/750x/54/4a/fc/544afc70665ea723b3b46e23b85b1f04.jpg" alt="img1">
+        <img src="https://images.pexels.com/photos/18733673/pexels-photo-18733673.jpeg?cs=srgb&dl=pexels-blue-18733673.jpg&fm=jpg" class="center" alt="img2">
+        <img src="https://i.pinimg.com/736x/01/f8/ca/01f8cae58289dbe26a536ccc6c91cfde.jpg" alt="img3">
     </div>
+
+    <div class="right-side">
+        <div class="form-container">
+            <h2>Lifestyle</h2>
+            <p style="font-size: 13px; color: #ccc; margin-bottom: 20px;">we are more than just a social media</p>
+            <form action="/auth/checkUser" method="post">
+                <input type="text" name="username" placeholder="Phone, username or email" required>
+                <input type="password" name="password" placeholder="Password" required minlength="8">
+                <button type="submit">Log In</button>
+            </form>
+
+            <div class="divider">OR</div>
+
+            <button style="background-color:#1877f2; margin-bottom:10px;">Log in with Facebook</button>
+
+            <p><a href="#">Forgot password?</a></p>
+
+            <p>Don't have an account? <a href="/auth/register">Sign up</a></p>
+        </div>
+    </div>
+
 </div>
 
 </body>
