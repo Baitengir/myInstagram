@@ -74,18 +74,33 @@
 <div class="register-container">
     <h1>Lifestyle</h1>
     <p>we are more than just a social media</p>
-    <form action="/auth/saveUser" method="post">
+    <form action="/auth/saveUser" method="post" th:object="${user}">
+
+        <div th:if="${errorMessageExistUserName}" style="color: red; margin-bottom: 10px;">
+            <p th:text="${errorMessageExistUserName}"></p>
+        </div>
         <input type="text" name="userName" placeholder="Username" required title="Enter a unique username">
+
+        <div th:if="${errorMessageExistEmail}" style="color: red; margin-bottom: 10px;">
+            <p th:text="${errorMessageExistEmail}"></p>
+        </div>
         <input type="email" name="email" placeholder="Email" required
                pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
                title="Enter a valid email address">
+
+        <div th:if="${errorMessageExistPhone}" style="color: red; margin-bottom: 10px;">
+            <p th:text="${errorMessageExistPhone}"></p>
+        </div>
         <input type="tel" name="phone" placeholder="Phone (+996 700 123 456)"
                pattern="^\+996\d{9}$"
                required title="Format: +996XXXXXXXXX">
-        <input type="password" name="password" placeholder="Password" minlength="8"
+
+        <input type="password" name="password" placeholder="Password" minlength="2"
                required title="Password must be at least 8 characters">
+
         <button type="submit">Register</button>
     </form>
+
     <div class="login-link">
         Already have an account? <a href="/auth">Log in</a>
     </div>

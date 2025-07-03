@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lifestyle — Главная</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 220px;
+            height: 100vh;
+            background-color: #000;
+            border-right: 1px solid #222;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .sidebar h1 {
+            color: #fff;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 12px 0;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #ccc;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .stories {
+            display: flex;
+            gap: 15px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+            overflow-x: auto;
+        }
+
+        .stories img {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            border: 2px solid #c13584;
+            object-fit: cover;
+        }
+
+        .feed {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .post-card {
+            background-color: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .post-header img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 12px;
+        }
+
+        .post-header .info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .post-header .info span {
+            font-weight: bold;
+        }
+
+        .post-header .info small {
+            color: #999;
+            font-size: 13px;
+        }
+
+        .post-image {
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 20px;
+            padding: 12px 15px;
+            font-size: 20px;
+        }
+
+        .post-actions span {
+            cursor: pointer;
+        }
+
+        .stories::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .stories::-webkit-scrollbar-thumb {
+            background-color: #c13584;
+            border-radius: 4px;
+        }
+
+        .stories::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .no-subscriptions-message {
+            padding: 20px;
+            font-size: 18px;
+            color: #ccc;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h1>Lifestyle</h1>
+    <a href="/mainPage/mainPanel">Home</a>
+    <a href="/user/search">Search</a>
+    <a href="/reels">Reels</a>
+    <a href="/messages">Messages</a>
+    <a href="/post/createPost">Create</a>
+    <a href="/user/profile">Profile</a>
+</div>
+
+<div class="main-content">
+
+    <!-- Сторисы -->
+    <div class="stories" th:if="${followingUsers.size() > 0}">
+        <a th:each="user : ${followingUsers}" th:href="@{/user/profile/{id}(id=${user.id})}">
+            <img th:src="${user.userInfo.image}" th:alt="${user.userName}" th:title="${user.userName}" />
+        </a>
+    </div>
+
+    <!-- Сообщение если подписок нет -->
+    <div th:if="${followingUsers.size() == 0}" class="no-subscriptions-message">
+        <a href="#", style="color: #777777">
+        Вы еще ни на кого не подписаны, поищите на кого можно подписаться.
+        </a>
+    </div>
+
+    <!-- Лента постов -->
+    <div class="feed">
+        <div th:each="post : ${posts}" class="post-card">
+            <div class="post-header">
+                <img th:src="${user?.userInfo?.image}" th:alt="${post.user.userName}">
+                <div class="info">
+                    <span th:text="${post.user.userName}">username</span>
+                    <small th:text="${#dates.format(post.createdAt, 'dd MMM yyyy')}">date</small>
+                </div>
+            </div>
+            <img th:src="${post.images[0]}" class="post-image" alt="Post Image">
+            <div class="post-actions">
+                <span>❤️</span>
+                <span>💬</span>
+                <span>📥</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

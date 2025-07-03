@@ -2,7 +2,9 @@ package myInstagram.service.serviceImpl;
 
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import myInstagram.entities.Follower;
 import myInstagram.entities.User;
+import myInstagram.entities.UserInfo;
 import myInstagram.repositories.UserRepo;
 import myInstagram.service.UserService;
 import org.springframework.stereotype.Service;
@@ -14,16 +16,9 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private final UserRepo userRepo;
 
-//    @PostConstruct
-//    public void init (){
-//        userRepo.save(new User("Baitengir", "baitengir67", "b@gmail.com", "+996708998877"));
-//    }
-
     @Override
     public void save(User user) {
-        System.out.println("Пришел пользователь: " + user);
         userRepo.save(user);
-
     }
 
     @Override

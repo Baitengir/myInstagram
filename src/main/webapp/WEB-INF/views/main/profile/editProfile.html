@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Profile</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      min-height: 100vh;
+      overflow-y: auto;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 30px;
+      border: 1px solid #333;
+      border-radius: 10px;
+      background-color: #111;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 28px;
+      letter-spacing: 1px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    input[type="text"],
+    textarea,
+    select {
+      background-color: #1a1a1a;
+      color: #fff;
+      border: 1px solid #444;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 80px;
+    }
+
+    .avatar-preview {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .avatar-preview img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      object-fit: cover;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .buttons button {
+      flex: 1;
+      padding: 12px;
+      margin: 0 5px;
+      background-color: #333;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .buttons button:hover {
+      background-color: #555;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Edit Profile</h1>
+  <form th:action="@{/user/updateProfile}" th:object="${userInfo}" method="post">
+
+    <label>Avatar URL</label>
+    <input type="text" th:field="*{image}">
+
+    <label>Full Name</label>
+    <input type="text" th:field="*{fullName}">
+
+    <label>Biography</label>
+    <textarea th:field="*{biography}"></textarea>
+
+    <label>Gender</label>
+    <select th:field="*{gender}">
+      <option value="MALE">Male</option>
+      <option value="FEMALE">Female</option>
+    </select>
+
+    <div class="buttons">
+      <button type="button" onclick="history.back()">Back</button>
+      <button type="submit">Save</button>
+    </div>
+
+  </form>
+</div>
+
+</body>
+</html>

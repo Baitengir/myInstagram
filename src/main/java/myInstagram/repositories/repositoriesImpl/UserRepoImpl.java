@@ -3,11 +3,11 @@ package myInstagram.repositories.repositoriesImpl;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
+import myInstagram.entities.Follower;
 import myInstagram.entities.User;
 import myInstagram.repositories.UserRepo;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Repository
@@ -96,4 +96,9 @@ public class UserRepoImpl implements UserRepo {
             System.out.println("User not found with id " + id);
         }
     }
+
+//    @Override
+//    public List<User> getSubscribersByUserId(Long id) {
+//
+//    }
 }

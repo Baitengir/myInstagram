@@ -3,16 +3,13 @@ package myInstagram.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
 import java.util.List;
-
 import static jakarta.persistence.CascadeType.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "users")
@@ -34,11 +31,11 @@ public class User {
     Comment comment;
     @OneToOne(mappedBy = "user", cascade = {REMOVE, MERGE, REFRESH})
     Like like;
-    @OneToOne (cascade = {REMOVE, MERGE, REFRESH, PERSIST})
+    @OneToOne (cascade = {ALL}, fetch = FetchType.EAGER)
     UserInfo userInfo;
-    @OneToOne(cascade = {REMOVE, MERGE, REFRESH, PERSIST})
+    @OneToOne(cascade = {ALL},fetch = FetchType.EAGER)
     Follower follower;
-    @OneToMany(mappedBy = "user", cascade = {REMOVE, MERGE, REFRESH})
+    @OneToMany(mappedBy = "user", cascade = {REMOVE, MERGE, REFRESH}, fetch = FetchType.EAGER)
     List<Image> images;
 
     public User(String userName, String password, String email, String phone) {

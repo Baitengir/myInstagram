@@ -10,7 +10,6 @@ import static jakarta.persistence.CascadeType.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "images")

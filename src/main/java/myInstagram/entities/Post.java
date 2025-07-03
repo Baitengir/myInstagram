@@ -3,7 +3,6 @@ package myInstagram.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -13,7 +12,6 @@ import static jakarta.persistence.CascadeType.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "posts")
@@ -24,14 +22,13 @@ public class Post {
     Long id;
     String title;
     String description;
-    int likesCount = 0;
     LocalDate createdAt;
     @ManyToOne (cascade = {REFRESH, MERGE, DETACH})
     User user;
-    @OneToMany(mappedBy = "post", cascade = {REFRESH, MERGE, REMOVE})
+    @OneToMany(mappedBy = "post", cascade = {REFRESH, MERGE, REMOVE}, fetch = FetchType.EAGER)
     List<Comment> comments;
-    @OneToMany(mappedBy = "post", cascade = {REFRESH, MERGE, REMOVE, PERSIST})
+    @OneToMany(mappedBy = "post", cascade = {REFRESH, MERGE, REMOVE, PERSIST}, fetch = FetchType.EAGER)
     List<Like> likes;
-    @OneToMany(mappedBy = "post", cascade = {REFRESH, MERGE, REMOVE,})
+    @OneToMany(mappedBy = "post", cascade = {REFRESH, MERGE, REMOVE, PERSIST},fetch = FetchType.EAGER)
     List<Image> images;
 }

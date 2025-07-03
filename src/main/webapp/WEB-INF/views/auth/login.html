@@ -62,7 +62,7 @@
         }
 
         .form-container input {
-            width: 100%;
+            width: 90%;
             padding: 11px;
             margin: 8px 0;
             border: none;
@@ -73,6 +73,9 @@
 
         .form-container button {
             width: 100%;
+            display: flex;
+            align-content: center;
+            justify-content: center;
             padding: 11px;
             background-color: #0095f6;
             color: #fff;
@@ -126,9 +129,9 @@
             <h2>Lifestyle</h2>
             <p style="font-size: 13px; color: #ccc; margin-bottom: 20px;">we are more than just a social media</p>
             <form action="/auth/checkUser" method="post">
-                <input type="text" name="username" placeholder="Phone, username or email" required>
-                <input type="password" name="password" placeholder="Password" required minlength="8">
-                <button type="submit">Log In</button>
+                   <input type="text" name="loginInput" placeholder="Phone, username or email" required>
+                   <input type="password" name="password" placeholder="Password" required minlength="2">
+                   <button type="submit">Log In</button>
             </form>
 
             <div class="divider">OR</div>

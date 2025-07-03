@@ -11,7 +11,7 @@ import static jakarta.persistence.CascadeType.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "user_informations")
@@ -21,9 +21,11 @@ public class UserInfo {
     @SequenceGenerator(name = "userInfo_gen", sequenceName = "userInfo_seq")
     Long id;
     String fullName;
+    @Column(columnDefinition = "TEXT")
     String biography;
+    @Enumerated(EnumType.STRING)
     Gender gender;
     String image;
-    @OneToOne(mappedBy = "userInfo", cascade = {REFRESH,MERGE,DETACH})
+    @OneToOne(mappedBy = "userInfo", cascade = {REFRESH, MERGE, DETACH})
     User user;
 }

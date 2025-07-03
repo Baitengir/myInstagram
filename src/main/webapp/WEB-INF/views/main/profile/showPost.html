@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${post.title}">Post</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            border: 1px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .post-details {
+            padding: 20px;
+        }
+        .post-title {
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+        .post-description {
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+        .post-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .likes {
+            font-size: 18px;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .buttons button {
+            padding: 6px 12px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .buttons button:hover {
+            background-color: #444;
+        }
+        .comments {
+            margin-top: 20px;
+        }
+        .comment {
+            padding: 10px 0;
+            border-top: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="image-container">
+        <img th:src="${images[0].url}" alt="Post Image">
+    </div>
+    <div class="post-details">
+        <div class="post-title" th:text="${post.title}">Title</div>
+        <div class="post-description" th:text="${post.description}">Description</div>
+
+        <div class="post-stats">
+            <div class="likes">
+                <span th:text="${likesCount}">0</span> likes
+            </div>
+            <div class="buttons">
+                <button>Like</button>
+                <button>Save</button>
+            </div>
+        </div>
+
+        <div class="comments">
+            <div class="comment" th:each="comment : ${comments}">
+                <strong th:text="${comment.user.userName}">Username</strong>:
+                <span th:text="${comment.getComment()}">Comment text</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
